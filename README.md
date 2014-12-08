@@ -1,6 +1,4 @@
-ICFScripts
-==========
+RA1_scripts
+===========
+Requires Python and ROOT.py
 
-A place for miscellaneous scripts related to the ICF code.
-
-Currently has scripts for calculating trigger efficiencies and tables
