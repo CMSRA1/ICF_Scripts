@@ -376,56 +376,56 @@ def run() :
 
     print effs_cumu.keys()
 
-    with open('output.tex','w') as f:
+    with open('tables/output.tex','w') as f:
 
-        print "\\documentclass[]{article}"
-        print "\\usepackage{lscape}"
-        print "\\begin{document}"
-        print "\\clearpage"
-        print "\\begin{landscape}"
-        print "\\begin{center}"
-        print "\\begin{table}[h!]"
-        print "\\caption{Signal trigger efficiencies.}" 
-        print "\\centering"
-        print "\\scriptsize"
-        print "\\begin{tabular}{lll"+"l"*len(ht_binning)+"}"
-        print "\\hline"
-        print "\\hline"
-        print "$N_{\\textrm{jet}}$ & $N_{\\textrm{b}}$ & Sample & \\multicolumn{"+str(len(ht_binning))+"}{c}{$H_{\\textrm{T}}$ (GeV)} \\\\"
-        print "\\cline{4-14}"
-        print " & & & "," & ".join( [str(x) for x in ht_binning] ),"\\\\"
+        f.write( "\\documentclass[]{article}")
+        f.write( "\\usepackage{lscape}")
+        f.write( "\\begin{document}")
+        f.write( "\\clearpage")
+        f.write( "\\begin{landscape}")
+        f.write( "\\begin{center}")
+        f.write( "\\begin{table}[h!]")
+        f.write( "\\caption{Signal trigger efficiencies.}" )
+        f.write( "\\centering")
+        f.write( "\\scriptsize")
+        f.write( "\\begin{tabular}{lll"+"l"*len(ht_binning)+"}")
+        f.write( "\\hline")
+        f.write( "\\hline")
+        f.write( "$N_{\\textrm{jet}}$ & $N_{\\textrm{b}}$ & Sample & \\multicolumn{"+str(len(ht_binning))+"}{c}{$H_{\\textrm{T}}$ (GeV)} \\\\")
+        f.write( "\\cline{4-14}")
+        f.write( " & & & "+" & ".join( [str(x) for x in ht_binning] )+"\\\\")
 
-        print "\\hline"
-        print "2--3 & $\geq 0$ & Yossof &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("Yossof","le3j","ge0b",x)][0],
+        f.write( "\\hline")
+        f.write( "2--3 & $\geq 0$ & Yossof &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("Yossof","le3j","ge0b",x)][0],
                                                                                                      effs_cumu[("Yossof","le3j","ge0b",x)][1],
                                                                                                      effs_cumu[("Yossof","le3j","ge0b",x)][2] ) \
-                                                           for x in ht_binning ]),"\\\\"
-        print "$\geq 4$ & $\geq 0$ & Yossof &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("Yossof","ge4j","ge0b",x)][0],
+                                                           for x in ht_binning ])+"\\\\")
+        f.write( "$\geq 4$ & $\geq 0$ & Yossof &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("Yossof","ge4j","ge0b",x)][0],
                                                                                                          effs_cumu[("Yossof","ge4j","ge0b",x)][1],
                                                                                                          effs_cumu[("Yossof","ge4j","ge0b",x)][2] ) \
-                                                               for x in ht_binning ]),"\\\\"
+                                                               for x in ht_binning ])+"\\\\")
 
-        print "\\hline"
-        print "2--3 & $\geq 0$ & $\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mu","le3j","ge0b",x)][0],
+        f.write( "\\hline")
+        f.write( "2--3 & $\geq 0$ & $\\mu$ + jets &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mu","le3j","ge0b",x)][0],
                                                                                                             effs_cumu[("mu","le3j","ge0b",x)][1],
                                                                                                             effs_cumu[("mu","le3j","ge0b",x)][2] ) \
-                                                                  for x in ht_binning ]),"\\\\"
-        print "$\geq 4$ & $\geq 0$ & $\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mu","ge4j","ge0b",x)][0],
+                                                                  for x in ht_binning ])+"\\\\")
+        f.write( "$\geq 4$ & $\geq 0$ & $\\mu$ + jets &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mu","ge4j","ge0b",x)][0],
                                                                                                                 effs_cumu[("mu","ge4j","ge0b",x)][1],
                                                                                                                 effs_cumu[("mu","ge4j","ge0b",x)][2] ) \
-                                                                      for x in ht_binning ]),"\\\\"
+                                                                      for x in ht_binning ])+"\\\\")
 
         if "mm" in samples.keys() :
-            print "2--3 & $\geq 0$ & $\\mu\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mm","le3j","ge0b",x)][0],
+            f.write( "2--3 & $\geq 0$ & $\\mu\\mu$ + jets &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mm","le3j","ge0b",x)][0],
                                                                                                                     effs_cumu[("mm","le3j","ge0b",x)][1],
                                                                                                                     effs_cumu[("mm","le3j","ge0b",x)][2] ) \
-                                                                          for x in ht_binning ]),"\\\\"
-            print "$\geq 4$ & $\geq 0$ & $\\mu\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mm","ge4j","ge0b",x)][0],
+                                                                          for x in ht_binning ])+"\\\\")
+            f.write( "$\geq 4$ & $\geq 0$ & $\\mu\\mu$ + jets &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mm","ge4j","ge0b",x)][0],
                                                                                                                         effs_cumu[("mm","ge4j","ge0b",x)][1],
                                                                                                                         effs_cumu[("mm","ge4j","ge0b",x)][2] ) \
-                                                                              for x in ht_binning ]),"\\\\"
+                                                                              for x in ht_binning ])+"\\\\")
 
-        print "\\hline"
+        f.write( "\\hline")
         for cat in cats.items() :
             header = cat[1][0] + " & " + cat[1][1] + " & " 
 #            val,errh,errl = None,None,None
@@ -443,11 +443,11 @@ def run() :
 #                val = effs_cumu[("mu",cat[0][0],cat[0][1],x)][0]
 #                errh = effs_cumu[("mu",cat[0][0],cat[0][1],x)][1]
 #                errl = effs_cumu[("mu",cat[0][0],cat[0][1],x)][2]
-#            print header,"$\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( val, errh, errl ) for x in ht_binning ]),"\\\\"
-            print header,"$\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mu",cat[0][0],cat[0][1],x)][0],
+#            f.write( header,"$\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( val, errh, errl ) for x in ht_binning ]),"\\\\"
+            f.write( header+"$\\mu$ + jets &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mu",cat[0][0],cat[0][1],x)][0],
                                                                                                      effs_cumu[("mu",cat[0][0],cat[0][1],x)][1],
                                                                                                      effs_cumu[("mu",cat[0][0],cat[0][1],x)][2] 
-                                                                                                     ) for x in ht_binning ]),"\\\\"
+                                                                                                     ) for x in ht_binning ])+"\\\\")
 
         if "mm" in samples.keys() :
             for cat in cats.items() :
@@ -467,19 +467,19 @@ def run() :
 #                    val = effs_cumu[("mm",cat[0][0],cat[0][1],x)][0]
 #                    errh = effs_cumu[("mm",cat[0][0],cat[0][1],x)][1]
 #                    errl = effs_cumu[("mm",cat[0][0],cat[0][1],x)][2]
-#                print header,"$\\mu\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( val, errh, errl ) for x in ht_binning ]),"\\\\"
-                print header,"$\\mu\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mm",cat[0][0],cat[0][1],x)][0],
+#                f.write( header,"$\\mu\\mu$ + jets &"," & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( val, errh, errl ) for x in ht_binning ]),"\\\\"
+                f.write( header+"$\\mu\\mu$ + jets &"+" & ".join(["${:4.2f}^{{+{:4.2f}}}_{{-{:4.2f}}}$".format( effs_cumu[("mm",cat[0][0],cat[0][1],x)][0],
                                                                                                              effs_cumu[("mm",cat[0][0],cat[0][1],x)][1],
                                                                                                              effs_cumu[("mm",cat[0][0],cat[0][1],x)][2] 
-                                                                                                             ) for x in ht_binning ]),"\\\\"
+                                                                                                             ) for x in ht_binning ])+"\\\\")
 
-        print "\\hline"
-        print "\\hline"
-        print "\\end{tabular}"
-        print "\\end{table}"
-        print "\\end{center}"
-        print "\\end{landscape}"
-        print "\\end{document}"
+        f.write( "\\hline")
+        f.write( "\\hline")
+        f.write( "\\end{tabular}")
+        f.write( "\\end{table}")
+        f.write( "\\end{center}")
+        f.write( "\\end{landscape}")
+        f.write( "\\end{document}")
 
 #    quit()
 
